@@ -53,6 +53,20 @@ h3 {
   margin-right: 75px;
 }
 
+#insurance {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#insurancetext {
+  position: relative;
+  vertical-align: middle;
+  top: 25%;
+  padding: 5px;
+  text-align: center;
+}
+
 #first {
   width: 150px;
   border-style: solid;
@@ -120,9 +134,5 @@ li {
 }
 
 #myForm {
-  display: none;
-}
-
-#video {
   display: none;
 }

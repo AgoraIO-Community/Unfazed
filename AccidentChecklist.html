@@ -17,12 +17,12 @@
     </button>
     <div class="content">
       <div id="container">
-        <div id="first" onclick="logininfo()"></div>
-        <div id="first" onclick="logininfo()"></div>
-        <div id="first" onclick="logininfo()"></div>
-        <div id="first" onclick="logininfo()"></div>
-        <div id="first" onclick="logininfo()"></div>
-        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"><input id="insurance" type="image" src="Pictures/State Farm.png" width="125px" height="125px"></div>
+        <div id="first" onclick="logininfo()"><input id="insurance" type="image" src="Pictures/Progressive.png" width="125px" height="50px"></div>
+        <div id="first" onclick="logininfo()"><input id="insurance" type="image" src="Pictures/Nationwide.png" width="125px" height="50px"></div>
+        <div id="first" onclick="logininfo()"><input id="insurance" type="image" src="Pictures/Geico.png" width="100px" height="40px"></div>
+        <div id="first" onclick="logininfo()"><input id="insurance" type="image" src="Pictures/LibertyMutual.png" width="100px" height="30px"></div>
+        <div id="first"><a id="insurancetext">I do not have any car insurance.</a></div>
         <br>
         <div id="memberinfo">Last Name:<br><input type="text" name="lastname"><br><br>
           Policy Number:<input type="text" name="policynumber"><br><br>
@@ -36,12 +36,12 @@
     </button>
     <div class="content">
       <div id="container">
-        <div id="first" onclick="otherclaim()"></div>
-        <div id="first" onclick="otherclaim()"></div>
-        <div id="first" onclick="otherclaim()"></div>
-        <div id="first" onclick="otherclaim()"></div>
-        <div id="first" onclick="otherclaim()"></div>
-        <div id="first" onclick="hitandrun()"></div>
+        <div id="first" onclick="otherclaim()"><input id="insurance" type="image" src="Pictures/State Farm.png" width="125px" height="125px"></div>
+        <div id="first" onclick="otherclaim()"><input id="insurance" type="image" src="Pictures/Progressive.png" width="125px" height="50px"></div>
+        <div id="first" onclick="otherclaim()"><input id="insurance" type="image" src="Pictures/Nationwide.png" width="125px" height="50px"></div>
+        <div id="first" onclick="otherclaim()"><input id="insurance" type="image" src="Pictures/Geico.png" width="100px" height="40px"></div>
+        <div id="first" onclick="otherclaim()"><input id="insurance" type="image" src="Pictures/LibertyMutual.png" width="100px" height="30px"></div>
+        <div id="first" onclick="hitandrun()"><a id="insurancetext">No Insurance or Hit and Run</a></div>
         <br>
         <div id="otherperson">Last Name:<br><input type="text" name="lastname"><br><br>
           Policy Number:<input type="text" name="policynumber"><br><br>
@@ -103,19 +103,20 @@
         <br />
         <br>
         <div id="container">
-          <input id="join" type="image" onclick="join()" src="Pictures/video-call.png" alt=report" width="100px" height="100px">
-          <input id="photoicon" type="image" src="Pictures/Instagram-logo.png" alt=report" width="100px" height="100px">
-          <input id="messageicon" type="image" onclick="openForm()" src="Pictures/message.png" alt=report" width="100px" height="100px">
+          <input id="join" type="image" onclick="join()" src="Pictures/video-call.png" alt="report" width="100px" height="100px">
+          <input id="photoicon" type="image" src="Pictures/Instagram-logo.png" alt="report" width="100px" height="100px">
+          <input id="messageicon" type="image" onclick="openForm()" src="Pictures/message.png" alt=report" width="100px"
+            height="100px">
         </div>
         <br />
         <div id="video" style="margin:0 auto;">
-            <div id="agora_local"style="float:center;width:210px;height:147px;display:inline-block;">
-            </div>
+          <div id="agora_local" style="float:center;width:210px;height:147px;display:inline-block;">
           </div>
-            <div class="chat-popup" id="myForm">
-                  <textarea id="textarea" placeholder="Type message.." name="msg" required cols="100" rows="4"></textarea>
-              </div>
-    </div>
+        </div>
+        <div class="chat-popup" id="myForm">
+          <textarea id="textarea" placeholder="Write a description..." name="msg" required cols="100" rows="4"></textarea>
+        </div>
+      </div>
     </div>
     <div>
       <button class="collapsible">
@@ -286,26 +287,130 @@
       getDevices();
     </script>
 
-    <script id="signaling" language = "javascript">
+    <script id="signaling" language="javascript">
       /* Login to the system. */
       var session = signal.login(account, token);
-      session.onLoginSuccess = function(uid){
-      /* Join a channel and set the onChannelJoined and onMessagChannelReceive callbacks. */
-      var channel = session.channelJoin(channelname);
-      channel.onChannelJoined = function(){
-      channel.onMessageChannelReceive = function(account, uid, msg){
+      session.onLoginSuccess = function (uid) {
+        /* Join a channel and set the onChannelJoined and onMessagChannelReceive callbacks. */
+        var channel = session.channelJoin(channelname);
+        channel.onChannelJoined = function () {
+          channel.onMessageChannelReceive = function (account, uid, msg) {
+          }
+          /* Send a channel message. */
+          channel.messageChannelSend(text);
+          /* Logout of the system. */
+          session.logout();
+        };
+      };
+      session.onLogout = function (ecode) {
+        /* Set the onLogout callback. */
       }
-      /* Send a channel message. */
-      channel.messageChannelSend(text);
-      /* Logout of the system. */
-      session.logout();
-      };
-      };
-      session.onLogout = function(ecode){
-      /* Set the onLogout callback. */
-}
     </script>
-    <script language = "javascript">
+
+    <!--<script id="livebroadcasting">
+      var client = AgoraRTC.createClient({ mode: 'live', codec: "h264" });
+
+      function joinlive() {
+        document.getElementById("joinlive").disabled = true;
+        document.getElementById("videolive").disabled = true;
+        var channel_key = null;
+
+      client.init("4771acf05fdc4a398402fbf0bafa199f", function () {
+        console.log("AgoraRTC client initialized");
+
+      }, function (err) {
+        console.log("AgoraRTC client init failed", err);
+      });
+
+      client.joinlive("4771acf05fdc4a398402fbf0bafa199f", "AutoRepair", "client", function (uid) {
+        console.log("User " + uid + " join channel successfully");
+
+      }, function (err) {
+        console.log("Join channel failed", err);
+      });
+
+      // User as audience
+
+      client.unpublish(localStream, function (err) {
+        console.log("Unpublish local stream error: " + err);
+      });
+
+      client.on('stream-unpublished', function (evt) {
+        console.log("Unpublish local stream successfully");
+      });
+
+      client.on('stream-added', function (evt) {
+        var stream = evt.stream;
+        console.log("New stream added: " + stream.getId());
+
+        client.subscribe(stream, function (err) {
+          console.log("Subscribe stream failed", err);
+        });
+      });
+      client.on('stream-subscribed', function (evt) {
+        var remoteStream = evt.stream;
+        console.log("Subscribe remote stream successfully: " + stream.getId());
+        stream.play('agora_remote' + stream.getId());
+      })
+      localStream = AgoraRTC.createStream({
+        streamID: uid,
+        audio: true,
+        video: true,
+        screen: false
+      }
+      );
+
+      localStream.init(function () {
+        console.log("getUserMedia successfully");
+        localStream.play('agora_local');
+
+      }, function (err) {
+        console.log("getUserMedia failed", err);
+      });
+
+      client.publish(localStream, function (err) {
+        console.log("Publish local stream error: " + err);
+      });
+
+      client.on('stream-published', function (evt) {
+        console.log("Publish local stream successfully");
+      });
+
+      client.on('stream-added', function (evt) {
+  var stream = evt.stream;
+  console.log("New stream added: " + stream.getId());
+
+  client.subscribe(stream, function (err) {
+    console.log("Subscribe stream failed", err);
+  });
+});
+client.on('stream-subscribed', function (evt) {
+  var remoteStream = evt.stream;
+  console.log("Subscribe remote stream successfully: " + stream.getId());
+  stream.play('agora_remote' + stream.getId());
+})
+localStream.init(function() {
+          console.log("getUserMedia successfully");
+          // Use agora_local as the ID of the dom element
+          localStream.play('agora_local');
+
+      }, function (err) {
+          console.log("getUserMedia failed", err);
+      });
+
+      client.on('stream-subscribed', function (evt) {
+      var remoteStream = evt.stream;
+      console.log("Subscribe remote stream successfully: " + stream.getId());
+      // Use agora_remote + stream.getId() as the ID of the dom element
+      remoteStream.play('agora_remote' + stream.getId());
+  })
+      }
+
+    </script>-->
+
+
+
+    <script language="javascript">
       var coll = document.getElementsByClassName("collapsible");
       var i;
 
@@ -322,21 +427,21 @@
       }
     </script>
 
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-    
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-    }
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
     </script>
 
 
@@ -387,10 +492,16 @@
     </script>
 
     <script>
-    function openForm() {
-      document.getElementById("myForm").style.display = "block";
-    }
+      function openForm() {
+        var s = document.getElementById("myForm")
+        if (s.style.display === "none") {
+          s.style.display = "block";
+        } else {
+          s.style.display = "none";
+        }
+      };
     </script>
 
 </body>
+
 </html>
