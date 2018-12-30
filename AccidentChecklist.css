@@ -1,0 +1,128 @@
+a {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  text-align: left;
+  color: black;
+  font-size: 25px;
+  font-style: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+}
+
+h3 {
+  text-align: left;
+  color: white;
+  padding-left: 4px;
+  font-size: 18px;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.collapsible {
+  border: 3px solid #505050;
+  border-radius: 10px;
+  background-color: #7da48a;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 10px 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+#container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+#videoicon, #photoicon, #messageicon, #join {
+  margin-right: 75px;
+}
+
+#first {
+  width: 150px;
+  border-style: solid;
+  height: 150px;
+  border-width: thick;
+  background-color: white;
+  margin-right: 25px;
+  font-size: 20px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 25px;
+  vertical-align: middle;
+  letter-spacing: 0.3px;
+}
+
+#memberinfo {
+  border: 5px dashed yellowgreen;
+  padding: 10px;
+}
+
+#otherperson, #hitandruninfo {
+  border: 5px dashed #FF7F50;
+  padding: 10px;
+}
+
+#policephonecall, #reporticon, #videoicon, #photoicon, #messageicon, #join {
+  border: 5px dashed black;
+  padding: 10px;
+}
+
+#whattorecord {
+  border: 5px dashed navy;
+  padding: 10px;
+}
+
+#phonecall, #report {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+#phonecalltext, #filereport, p, ul {
+  padding-left: 10px;
+  font-size: 20px;
+  vertical-align: middle;
+  letter-spacing: 0.3px;
+  margin-right: 25px;
+}
+
+ul {
+  font-size: 17px;
+}
+
+li {
+  margin-left: 15px;
+  padding-left: 5px;
+}
+
+#casenumber {
+  font-weight: bold;
+}
+
+#metadata {
+  font-size: 15px;
+}
+
+#myForm {
+  display: none;
+}
+
+#video {
+  display: none;
+}

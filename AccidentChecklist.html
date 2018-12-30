@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Unfazed Accident Checklist</title>
+  <link rel="stylesheet" href="AccidentChecklist.css">
+  <script src="AgoraRTCSDK-2.5.0.js"></script>
+  <script src="vendor/jquery.js"></script>
+</head>
+
+<body>
+  <div>
+    <h1>Car Accident Checklist</h1>
+  </div>
+  <div><button class="collapsible" onclick="reset()">
+      <h3>Choose your insurance company</h3>
+    </button>
+    <div class="content">
+      <div id="container">
+        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"></div>
+        <div id="first" onclick="logininfo()"></div>
+        <br>
+        <div id="memberinfo">Last Name:<br><input type="text" name="lastname"><br><br>
+          Policy Number:<input type="text" name="policynumber"><br><br>
+          <input type="submit" value="Submit"></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="collapsible" onclick="resetother()">
+      <h3>Choose the insurance company of other person(s) involved</h3>
+    </button>
+    <div class="content">
+      <div id="container">
+        <div id="first" onclick="otherclaim()"></div>
+        <div id="first" onclick="otherclaim()"></div>
+        <div id="first" onclick="otherclaim()"></div>
+        <div id="first" onclick="otherclaim()"></div>
+        <div id="first" onclick="otherclaim()"></div>
+        <div id="first" onclick="hitandrun()"></div>
+        <br>
+        <div id="otherperson">Last Name:<br><input type="text" name="lastname"><br><br>
+          Policy Number:<input type="text" name="policynumber"><br><br>
+          <input type="submit" value="Submit"></div>
+        <div id="hitandruninfo">
+          Plate (Partial or Full):<input type="text" name="plate"><br><br>
+          Make and/or Model:<br><input type="text" name="makemodel"><br><br>
+          Color:<br /><input type="text" name="color"><br><br>
+          Description of Person:<input type="text" name="description"><br><br>
+          <input type="submit" value="Submit"></div>
+      </div>
+    </div>
+    <div>
+      <button class="collapsible">
+        <h3>Call or File a Report with Police</h3>
+      </button>
+      <div class="content">
+        <div id="container">
+          <div id="phonecall"><input id="policephonecall" type="image" src="Pictures/phone-call.png" alt="Phone Call"
+              width="100px" height="100px">
+            <div id="phonecalltext">Call police<br />if no report has been filed</div>
+          </div>
+          <br />
+          <div id="report"><input id="reporticon" type="image" src="Pictures/report.png" alt=report" width="100px"
+              height="100px">
+            <div id="filereport">Already called police and filed a report?
+              <br>
+              <br>
+              <div id="casenumber">Report Case Number:<input type="text" name="reportnumber"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="collapsible">
+        <h3>Record Damage</h3>
+      </button>
+      <div class="content">
+        <div id="whattorecord">
+          <p>Record as much information related to the car accident as possible.</p>
+          <ul>
+            <li>Damage to your car</li>
+            <li>Damage to other car(s) involved</li>
+            <li>Other causes of car accident (ex. weather conditions, road conditions)</li>
+            <li>Personal injuries</li>
+          </ul>
+        </div>
+        <br />
+        <div id="div_device" class="panel panel-default">
+          <div class="select">
+            <label for="audioSource"><a id="metadata">Audio source:</a> </label><select id="audioSource"></select>
+          </div>
+          <div class="select">
+            <label for="videoSource"><a id="metadata">Video source:</a> </label><select id="videoSource"></select>
+          </div>
+        </div>
+        <a id="metadata">Host:</a> <input id="video" type="checkbox" checked></input>
+        <br />
+        <br>
+        <div id="container">
+          <input id="join" type="image" onclick="join()" src="Pictures/video-call.png" alt=report" width="100px" height="100px">
+          <input id="photoicon" type="image" src="Pictures/Instagram-logo.png" alt=report" width="100px" height="100px">
+          <input id="messageicon" type="image" onclick="openForm()" src="Pictures/message.png" alt=report" width="100px" height="100px">
+        </div>
+        <br />
+        <div id="video" style="margin:0 auto;">
+            <div id="agora_local"style="float:center;width:210px;height:147px;display:inline-block;">
+            </div>
+          </div>
+            <div class="chat-popup" id="myForm">
+                  <textarea id="textarea" placeholder="Type message.." name="msg" required cols="100" rows="4"></textarea>
+              </div>
+    </div>
+    </div>
+    <div>
+      <button class="collapsible">
+        <h3>Finalize Your Insurance Claim</h3>
+      </button>
+      <div class="content">
+      </div>
+    </div>
+    <div>
+      <button class="collapsible">
+        <h3>Next Steps</h3>
+      </button>
+      <div class="content">
+      </div>
+    </div>
+
+    <script language="javascript">
+      if (!AgoraRTC.checkSystemRequirements()) {
+        alert("Your browser does not support WebRTC!");
+      }
+      /* select Log type */
+      // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.NONE);
+      // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.ERROR);
+      // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.WARNING);
+      // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.INFO);  
+      // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.DEBUG);
+      /* simulated data to proof setLogLevel() */
+      AgoraRTC.Logger.error('this is error');
+      AgoraRTC.Logger.warning('this is warning');
+      AgoraRTC.Logger.info('this is info');
+      AgoraRTC.Logger.debug('this is debug');
+
+      var client, localStream, camera, microphone;
+      var audioSelect = document.querySelector('select#audioSource');
+      var videoSelect = document.querySelector('select#videoSource');
+
+      function join() {
+        document.getElementById("join").disabled = true;
+        document.getElementById("video").disabled = true;
+        var channel_key = null;
+
+        console.log("Init AgoraRTC client with App ID: " + "04aa7cc35197437bb4bc3361a790bab2");
+        client = AgoraRTC.createClient({ mode: 'interop' });
+        client.init("04aa7cc35197437bb4bc3361a790bab2", function () {
+          console.log("AgoraRTC client initialized");
+          client.join(channel_key, "Emergency", null, function (uid) {
+            console.log("User " + uid + " join channel successfully");
+
+            if (document.getElementById("video").checked) {
+              camera = videoSource.value;
+              microphone = audioSource.value;
+              remoteStream = AgoraRTC.createStream({ streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false });
+              //remoteStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
+              if (document.getElementById("video").checked) {
+                remoteStream.setVideoProfile('720p_3');
+              }
+              // The user has granted access to the camera and mic.
+              remoteStream.on("accessAllowed", function () {
+                console.log("accessAllowed");
+              });
+              // The user has denied access to the camera and mic.
+              remoteStream.on("accessDenied", function () {
+                console.log("accessDenied");
+              });
+              remoteStream.init(function () {
+                console.log("getUserMedia successfully");
+                remoteStream.play('agora_local');
+                client.publish(remoteStream, function (err) {
+                  console.log("Publish local stream error: " + err);
+                });
+                client.on('stream-published', function (evt) {
+                  console.log("Publish local stream successfully");
+                });
+              }, function (err) {
+                console.log("getUserMedia failed", err);
+              });
+            }
+          }, function (err) {
+            console.log("Join channel failed", err);
+          });
+        }, function (err) {
+          console.log("AgoraRTC client init failed", err);
+        });
+        channelKey = "";
+        client.on('error', function (err) {
+          console.log("Got error msg:", err.reason);
+          if (err.reason === 'DYNAMIC_KEY_TIMEOUT') {
+            client.renewChannelKey(channelKey, function () {
+              console.log("Renew channel key successfully");
+            }, function (err) {
+              console.log("Renew channel key failed: ", err);
+            });
+          }
+        });
+        client.on('stream-added', function (evt) {
+          var stream = evt.stream;
+          console.log("New stream added: " + stream.getId());
+          console.log("Subscribe ", stream);
+          client.subscribe(stream, function (err) {
+            console.log("Subscribe stream failed", err);
+          });
+        });
+        client.on('stream-subscribed', function (evt) {
+          var stream = evt.stream;
+          console.log("Subscribe remote stream successfully: " + stream.getId());
+          if ($('div#video #agora_remote' + stream.getId()).length === 0) {
+            $('div#video').append('<div id="agora_remote' + stream.getId() + '" style="float:left; width:810px;height:607px;display:inline-block;"></div>');
+          }
+          stream.play('agora_remote' + stream.getId());
+        });
+        client.on('stream-removed', function (evt) {
+          var stream = evt.stream;
+          stream.stop();
+          $('#agora_remote' + stream.getId()).remove();
+          console.log("Remote stream is removed " + stream.getId());
+        });
+        client.on('peer-leave', function (evt) {
+          var stream = evt.stream;
+          if (stream) {
+            stream.stop();
+            $('#agora_remote' + stream.getId()).remove();
+            console.log(evt.uid + " leaved from this channel");
+          }
+        });
+      }
+      function leave() {
+        document.getElementById("leave").disabled = true;
+        client.leave(function () {
+          console.log("Leavel channel successfully");
+        }, function (err) {
+          console.log("Leave channel failed");
+        });
+      }
+      function publish() {
+        document.getElementById("publish").disabled = true;
+        document.getElementById("unpublish").disabled = false;
+        client.publish(remoteStream, function (err) {
+          console.log("Publish local stream error: " + err);
+        });
+      }
+      function unpublish() {
+        document.getElementById("publish").disabled = false;
+        document.getElementById("unpublish").disabled = true;
+        client.unpublish(remoteStream, function (err) {
+          console.log("Unpublish local stream failed" + err);
+        });
+      }
+      function getDevices() {
+        AgoraRTC.getDevices(function (devices) {
+          for (var i = 0; i !== devices.length; ++i) {
+            var device = devices[i];
+            var option = document.createElement('option');
+            option.value = device.deviceId;
+            if (device.kind === 'audioinput') {
+              option.text = device.label || 'microphone ' + (audioSelect.length + 1);
+              audioSelect.appendChild(option);
+            } else if (device.kind === 'videoinput') {
+              option.text = device.label || 'camera ' + (videoSelect.length + 1);
+              videoSelect.appendChild(option);
+            } else {
+              console.log('Some other kind of source/device: ', device);
+            }
+          }
+        });
+      }
+      //audioSelect.onchange = getDevices;
+      //videoSelect.onchange = getDevices;
+      getDevices();
+    </script>
+
+    <script id="signaling" language = "javascript">
+      /* Login to the system. */
+      var session = signal.login(account, token);
+      session.onLoginSuccess = function(uid){
+      /* Join a channel and set the onChannelJoined and onMessagChannelReceive callbacks. */
+      var channel = session.channelJoin(channelname);
+      channel.onChannelJoined = function(){
+      channel.onMessageChannelReceive = function(account, uid, msg){
+      }
+      /* Send a channel message. */
+      channel.messageChannelSend(text);
+      /* Logout of the system. */
+      session.logout();
+      };
+      };
+      session.onLogout = function(ecode){
+      /* Set the onLogout callback. */
+}
+    </script>
+    <script language = "javascript">
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      }
+    </script>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+    </script>
+
+
+    <script>
+      function logininfo() {
+        var x = document.getElementById("memberinfo");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      } </script>
+
+    <script>
+      function otherclaim() {
+        var x = document.getElementById("otherperson");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      } </script>
+
+    <script>
+      function hitandrun() {
+        var x = document.getElementById("hitandruninfo");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      } </script>
+
+    <script>
+      function reset() {
+        var x = document.getElementById("memberinfo");
+        x.style.display = "none";
+      }
+    </script>
+
+    <script>
+      function resetother() {
+        var x = document.getElementById("otherperson");
+        var b = document.getElementById("hitandruninfo");
+        x.style.display = "none";
+        b.style.display = "none";
+      }
+    </script>
+
+    <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    </script>
+
+</body>
+</html>
