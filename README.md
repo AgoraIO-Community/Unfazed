@@ -1,7 +1,7 @@
 # Unfazed
 Claims Simplified
 
-Unfazed is a web-based checklist for insurance policy holders that were involved in a car accident.
+<a href=https://jennifertrin.github.io/Unfazed>Unfazed</a> is a web-based checklist for insurance policy holders that were involved in a car accident.
 It allows them to call police, record videos of car damage and other conditions, and enage in live broadcasts with 
 claims adjusters and auto repair shops throughout the repair process.
 
