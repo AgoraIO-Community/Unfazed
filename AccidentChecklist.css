@@ -91,7 +91,7 @@ h3 {
   padding: 10px;
 }
 
-#policephonecall, #reporticon, #videoicon, #photoicon, #messageicon, #join {
+#policephonecall, #reporticon, #videoicon, #photoicon, #messageicon, #joinlive, #autobody, #join {
   border: 5px dashed black;
   padding: 10px;
 }
@@ -107,7 +107,7 @@ h3 {
   justify-content: left;
 }
 
-#phonecalltext, #filereport, p, ul {
+#phonecalltext, #filereport, p, ul, #questions {
   padding-left: 10px;
   font-size: 20px;
   vertical-align: middle;
@@ -131,6 +131,12 @@ li {
 #metadata {
   font-size: 15px;
 }
+
 #myForm {
   display: none;
+}
+
+#address {
+  font-size: 18px;
+  padding-left: 10px;
 }

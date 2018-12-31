@@ -125,6 +125,10 @@
         <h3>Finalize Your Insurance Claim</h3>
       </button>
       <div class="content">
+        <div id="container">
+          <div><input id="join" type="image" onclick="join()" src="Pictures/video-call.png" alt="report" width="100px" height="100px"></div>
+          <div id="questions"><p id="questions">Any questions?<br />Chat with your claims adjuster</p></div>
+        </div>
       </div>
     </div>
     <div>
@@ -132,6 +136,14 @@
         <h3>Next Steps</h3>
       </button>
       <div class="content">
+        <div id = "container">
+        <div><input id="autobody" type="image" src="Pictures/car-repair.png"></div>
+        <div>
+        <p><b>Assigned Auto Repair Shop:</p></b>
+        <p id="address">667 Randolph Road</p>
+        <p id="address">San Francisco, CA </p>
+      </div>
+      </div>
       </div>
     </div>
 
@@ -157,6 +169,7 @@
 
       function join() {
         document.getElementById("join").disabled = true;
+        document.getElementById("joinlive").disabled = true;
         document.getElementById("video").disabled = true;
         var channel_key = null;
 
